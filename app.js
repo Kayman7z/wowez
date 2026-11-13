@@ -753,7 +753,7 @@
       let files = [];
       try { const r = await fetch(`https://api.github.com/repos/${REPO.owner}/${REPO.name}/contents/addons/${k}?ref=${REPO.branch}`); if (!r.ok) continue; files = await r.json(); } catch { continue; }
       const byKey = {};
-      files.forEach(f => { const m = f.name.match(/^(.*)\.(zip|json)$/i); if (m) (byKey[m[1]] = byKey[m[1]] || {})[m[2].toLowerCase()] = f; });
+      files.forEach(f => { const m = f.name.match(/^(.*)\.(zip|rar|7z|json)$/i); if (m) (byKey[m[1]] = byKey[m[1]] || {})[m[2].toLowerCase()] = f; });
       for (const [id, f] of Object.entries(byKey)) {
         if (known.has(k + "/" + id)) continue;
         const a = { id, kind: k, name: id, status: k === "recommended" ? "unknown" : "ok" };
@@ -763,6 +763,9 @@
             Object.assign(a, { name: toc.Title || id, author: toc.Author || "", version: toc.Version || "", description: { ru: toc["Notes-ruRU"] || toc.Notes || "", en: toc.Notes || "" }, download: `addons/${k}/${f.zip.name}` });
             const dep = toc.RequiredDeps || toc.Dependencies || ""; if (k === "plugins" && dep) a.for = dep.split(",")[0].trim();
           }
+          const arc = f.rar || f["7z"];
+          if (!f.zip && arc) Object.assign(a, { download: `addons/${k}/${arc.name}`, size: arc.size });
+          if (f.zip) a.size = f.zip.size;
           if (f.json) Object.assign(a, await (await fetch(`addons/${k}/${encodeURIComponent(f.json.name)}`)).json());
         } catch {}
         a.kind = k; found.push(a);

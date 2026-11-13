@@ -65,9 +65,17 @@ def main():
             continue
         files = sorted(os.listdir(d))
         zips = {os.path.splitext(f)[0]: f for f in files if f.lower().endswith(".zip")}
+        arcs = {os.path.splitext(f)[0]: f for f in files if f.lower().endswith((".rar", ".7z"))}
         jsons = {os.path.splitext(f)[0]: f for f in files if f.lower().endswith(".json")}
-        for key in sorted(set(zips) | set(jsons)):
-            a = from_zip(kind, zips[key]) if key in zips else {"id": key, "kind": kind}
+        for key in sorted(set(zips) | set(jsons) | set(arcs)):
+            if key in zips:
+                a = from_zip(kind, zips[key])
+            elif key in arcs:
+                st = os.stat(os.path.join(d, arcs[key]))
+                a = {"id": key, "name": key, "kind": kind, "download": f"addons/{kind}/{arcs[key]}", "size": st.st_size,
+                     "updated": datetime.date.fromtimestamp(st.st_mtime).isoformat(), "status": "ok" if kind != "recommended" else "unknown"}
+            else:
+                a = {"id": key, "kind": kind}
             if key in jsons:
                 try:
                     extra = json.load(open(os.path.join(d, jsons[key]), encoding="utf-8"))

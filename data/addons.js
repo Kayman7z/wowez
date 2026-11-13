@@ -1,6 +1,52 @@
 // Генерируется tools/build_addons.py из папки addons/. Руками не править: положите zip или .json в addons/.
 window.ADDONS = [
  {
+  "id": "KaymanBuffs",
+  "name": "KaymanBuffs",
+  "kind": "ours",
+  "author": "Kayman",
+  "version": "1.0.0",
+  "interface": "16001",
+  "description": {
+   "ru": "Устали просить бафы ? Выход есть KaymanBuffs . Коротко нажали на друида , нажали кнопку попросить баф он сам всё напишет и поблагодарит когда вас бафнут . Разархивировать в Addons в игре прописать /reload .",
+   "en": "Устали просить бафы ? Выход есть KaymanBuffs . Коротко нажали на друида , нажали кнопку попросить баф он сам всё напишет и поблагодарит когда вас бафнут . Разархивировать в Addons в игре прописать /reload ."
+  },
+  "download": "addons/ours/KaymanBuffs.zip",
+  "size": 9408,
+  "updated": "2026-11-13",
+  "status": "ok",
+  "category": {
+   "ru": "чат",
+   "en": "чат"
+  },
+  "checked": "2026-11-13"
+ },
+ {
+  "id": "KaymanCoach",
+  "name": "Kayman Coach",
+  "kind": "ours",
+  "author": "Kayman",
+  "version": "1.0",
+  "interface": "16001, 11508",
+  "description": {
+   "ru": "Подсказывает, что нажать прямо сейчас (как Dota Plus) + таланты. Сейчас: Воин.",
+   "en": "Подсказывает, что нажать прямо сейчас (как Dota Plus) + таланты. Сейчас: Воин."
+  },
+  "download": "addons/ours/KaymanCoach.zip",
+  "size": 18143,
+  "updated": "2026-11-13",
+  "status": "ok"
+ },
+ {
+  "id": "RXPGuides_RU",
+  "name": "RXPGuides_RU",
+  "kind": "ours",
+  "download": "addons/ours/RXPGuides_RU.rar",
+  "size": 738693,
+  "updated": "2026-11-13",
+  "status": "ok"
+ },
+ {
   "id": "auctionator",
   "kind": "recommended",
   "name": "Auctionator",
