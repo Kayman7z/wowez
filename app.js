@@ -15,7 +15,7 @@
   /* ---------- языки ---------- */
   const T = {
     ru: {
-      "nav.where": "Где?", "w.eyebrow": "Поиск по миру", "w.lead": "Впишите название монстра, NPC, босса, задания, подземелья или места, и мы покажем, где это находится.", "w.ph": "Например: Hogger, Overseer Wrex, Hyjal…", "w.hint": "Наша база собрана из датамайна клиента 1.60.1 и знает в основном новое содержимое Forever. Названия в ней на английском, как в клиенте. Если здесь ничего нет, кнопка ниже ищет на Wowhead, где можно искать и по-русски.", "w.wh": "Искать «{q}» на Wowhead ↗", "w.none": "В нашей базе ничего не нашлось.", "w.more": "Показаны первые {n} совпадений, уточните запрос.", "w.noloc": "место пока не известно, смотрите Wowhead", "w.src": "Источник базы:", "w.st": "мест, NPC и заданий в базе",
+      "nav.where": "Где?", "w.eyebrow": "Поиск по миру", "w.lead": "Впишите название монстра, NPC, босса, задания, подземелья или места, и мы покажем, где это находится.", "w.ph": "Например: Хиджал, Мертвые копи, Overseer Wrex…", "w.hint": "Можно писать по-русски или по-английски. Наша база собрана из датамайна клиента 1.60.1 и знает в основном новое содержимое Forever. У старых мест и NPC есть русские названия, а у нового контента Forever их пока нигде нет, поэтому такие записи на английском. Русское слово мы также пробуем латиницей: «хоггер» найдёт Hogger. Если ничего не нашлось, кнопка ниже ищет на Wowhead по-русски.", "w.wh": "Искать «{q}» на Wowhead ↗", "w.none": "В нашей базе ничего не нашлось.", "w.more": "Показаны первые {n} совпадений, уточните запрос.", "w.noloc": "место пока не известно, смотрите Wowhead", "w.src": "Источник базы:", "w.st": "мест, NPC и заданий в базе",
       "wt.npc": "NPC", "wt.boss": "Босс", "wt.dungeon": "Подземелье", "wt.raid": "Рейд", "wt.zone": "Зона", "wt.area": "Место", "wt.flight": "Точка полётов", "wt.quest": "Задание", "wt.starter": "Предмет, начинающий задание",
       "tal.title": "Калькулятор талантов", "tal.reset": "Сбросить", "tal.help": "Левый клик добавляет очко, правый клик убирает. Чтобы открыть следующий ряд, нужно вложить 5 очков в дерево. Распределение сохраняется в браузере.", "tal.client": "описания талантов из английского клиента 1.60.1", "tal.needRow": "Нужно {n} очков в дереве «{tree}»", "tal.needReq": "Нужно {n} очк. в таланте «{name}»", "tal.rank": "Ранг", "tal.next": "Следующий ранг:",
       "nav.home": "Главная", "nav.addons": "Аддоны", "nav.classes": "Классы", "nav.doll": "Кукла персонажа",
@@ -136,23 +136,43 @@
 
   /* ---------- «Где?» ---------- */
   const WHERE = window.WHERE || [];
+  const PRU = window.WHERE_PLACES_RU || {};
   const wq = $("#wq");
-  const norm = x => String(x).toLowerCase().replace(/[’'`]/g, "'").normalize("NFD").replace(/[̀-ͯ]/g, "");
-  const WIDX = WHERE.map(e => norm(e[0]));
+  const norm = x => String(x).toLowerCase().replace(/ё/g, "е").replace(/[’'`]/g, "'").normalize("NFD").replace(/[̀-ͯ]/g, "");
+  const prKeys = Object.keys(PRU).sort((a, b) => b.length - a.length);
+  const prRe = prKeys.length ? new RegExp("\\b(" + prKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")\\b", "g") : null;
+  const placeRu = x => prRe ? String(x).replace(prRe, m => PRU[m]) : String(x);
+  // русская раскладка → латиница, чтобы «хоггер» нашёл Hogger, а «аили» — Aili
+  const TR = { а:"a",б:"b",в:"v",г:"g",д:"d",е:"e",ж:"zh",з:"z",и:"i",й:"y",к:"k",л:"l",м:"m",н:"n",о:"o",п:"p",р:"r",с:"s",т:"t",у:"u",ф:"f",х:"h",ц:"ts",ч:"ch",ш:"sh",щ:"sch",ъ:"",ы:"y",ь:"",э:"e",ю:"yu",я:"ya" };
+  const PLACE_T = ["zone", "area", "dungeon", "raid", "flight"];
+  const ruName = e => e[4] || (PLACE_T.includes(e[1]) ? placeRu(e[0]) : e[0]);
+  const translit = x => [...x].map(ch => TR[ch] ?? ch).join("");
+  const WIDX = WHERE.map(e => norm([e[0], e[4], placeRu(e[0]), e[2], placeRu(e[2])].filter(Boolean).join(" | ")));
+  const WLAT = WIDX.map(x => x.replace(/[^a-z0-9' |]/g, ""));
   const whUrl = v => `https://www.wowhead.com/classic${lang === "ru" ? "/ru" : ""}/search?q=${encodeURIComponent(v)}`;
   function renderWhere() {
     const v = wq.value.trim(), n = norm(v);
     const out = $("#where-out");
     if ($("#st-where")) $("#st-where").textContent = WHERE.length;
     if (n.length < 2) { out.innerHTML = ""; $("#where-wh").hidden = true; return; }
+    const cyr = /[а-я]/.test(n), lat = cyr ? translit(n) : "";
     const hits = [];
-    WIDX.forEach((x, i) => { const p = x.indexOf(n); if (p >= 0) hits.push([p === 0 ? 0 : x.includes(" " + n) ? 1 : 2, x.length, i]); });
+    WIDX.forEach((x, i) => {
+      const nameN = norm(WHERE[i][0]), ruN = norm(ruName(WHERE[i]));
+      let rank = -1;
+      if (nameN.startsWith(n) || ruN.startsWith(n)) rank = 0;
+      else if (nameN.includes(n) || ruN.includes(n)) rank = 1;
+      else if (x.includes(n)) rank = 3;
+      else if (lat.length >= 3 && (nameN.startsWith(lat) || nameN.includes(" " + lat) ? (rank = 2) : nameN.includes(lat) ? (rank = 2.5) : WLAT[i].includes(lat) ? (rank = 4) : 0)) {}
+      if (rank >= 0) hits.push([rank, nameN.length, i]);
+    });
     hits.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-    const LIM = 60;
-    out.innerHTML = hits.length ? hits.slice(0, LIM).map(([, , i]) => { const [name, ty, w, info] = WHERE[i];
-      return `<li class="w-hit w-${ty}"><span class="w-type">${esc(t("wt." + ty))}</span><b>${esc(name)}</b>
-        <span class="w-where">${w ? "📍 " + esc(w) : `<i>${esc(t("w.noloc"))}</i>`}</span>${info ? `<small>${esc(info)}</small>` : ""}
-        <a href="${esc(whUrl(name))}" target="_blank" rel="noopener" class="w-link">Wowhead ↗</a></li>`; }).join("")
+    const LIM = 60, ru = lang === "ru";
+    out.innerHTML = hits.length ? hits.slice(0, LIM).map(([, , i]) => { const [name, ty, w, info, rn] = WHERE[i];
+      const shown = ru ? ruName(WHERE[i]) : name, wShown = ru ? placeRu(w) : w;
+      return `<li class="w-hit w-${ty}"><span class="w-type">${esc(t("wt." + ty))}</span><b>${esc(shown)}${shown !== name ? ` <em class="w-en">${esc(name)}</em>` : ""}</b>
+        <span class="w-where">${w ? "📍 " + esc(wShown) : `<i>${esc(t("w.noloc"))}</i>`}</span>${info ? `<small>${esc(info)}</small>` : ""}
+        <a href="${esc(whUrl(ru && rn ? rn : name))}" target="_blank" rel="noopener" class="w-link">Wowhead ↗</a></li>`; }).join("")
       + (hits.length > LIM ? `<li class="w-more">${esc(t("w.more").replace("{n}", LIM))}</li>` : "")
       : `<li class="w-more">${esc(t("w.none"))}</li>`;
     const a = $("#where-wh"); a.hidden = false; a.href = whUrl(v); a.textContent = t("w.wh").replace("{q}", v);

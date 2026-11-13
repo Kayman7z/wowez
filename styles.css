@@ -454,3 +454,4 @@ footer a { color: var(--muted); }
 .w-npc .w-type { color: #8fd3ff; }
 .w-more { padding: 10px 14px; color: var(--muted); }
 @media (max-width: 600px) { .w-hit { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "ty ln" "nm nm" "wh wh" "in in"; } }
+.w-en { font: 400 14px/1 var(--body); color: var(--dim); font-style: normal; margin-left: 6px; }
