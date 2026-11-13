@@ -1,0 +1,27 @@
+{
+  "name": "ElvUI",
+  "category": {
+    "ru": "Интерфейс",
+    "en": "UI"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Полная замена интерфейса: рамки, панели, сумки, чат, полоски здоровья. Из-за размера чаще других требует исправлений.",
+    "en": "A complete UI replacement: frames, bars, bags, chat, nameplates. Being so big, it is the most likely to need fixes."
+  },
+  "links": [
+    {
+      "label": "Сайт / Site",
+      "url": "https://tukui.org/elvui"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/tukui-org/ElvUI"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

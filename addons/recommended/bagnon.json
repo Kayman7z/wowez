@@ -1,0 +1,27 @@
+{
+  "name": "Bagnon",
+  "category": {
+    "ru": "Сумки",
+    "en": "Bags"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Все сумки в одном окне с поиском, плюс банк и вещи других персонажей откуда угодно.",
+    "en": "All bags in one window with search, plus your bank and alts' items from anywhere."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/bagnon"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Jaliborc/Bagnon"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

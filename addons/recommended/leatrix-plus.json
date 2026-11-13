@@ -1,0 +1,23 @@
+{
+  "name": "Leatrix Plus",
+  "category": {
+    "ru": "Удобства",
+    "en": "Quality of life"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Набор мелких улучшений интерфейса: авторемонт и продажа хлама, быстрый лут, скрытие лишнего. Каждая функция включается отдельно.",
+    "en": "A set of small UI tweaks: auto-repair, junk selling, faster looting, hiding clutter. Every feature is switched on one by one."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/leatrix-plus"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

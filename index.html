@@ -4,24 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WoWez</title>
-<meta name="description" content="Аддоны, ротации, таланты и кукла персонажа для World of Warcraft: Forever.">
+<meta name="description" content="Аддоны, гайды, сборки талантов, экипировка и поиск по миру для World of Warcraft: Forever.">
+<link rel="icon" href="icons/626001.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="bg"><div class="grid-bg"></div></div>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="#home"><span class="logo-mark"><span id="brand-mark">KD</span></span><span id="brand-name"></span></a>
-    <nav class="tabs">
-      <a href="#home" data-page="home" data-i18n="nav.home"></a>
+    <a class="logo" href="#home" aria-label="WoWez"><span class="logo-mark">W</span><span class="logo-text"><b id="brand-name">WoWez</b><small data-i18n="brand.sub"></small></span></a>
+    <nav class="tabs" id="tabs">
+      <a href="#classes" data-page="classes" data-i18n="nav.guides"></a>
       <a href="#addons" data-page="addons" data-i18n="nav.addons"></a>
-      <a href="#classes" data-page="classes" data-i18n="nav.classes"></a>
       <a href="#doll" data-page="doll" data-i18n="nav.doll"></a>
-      <a href="#where" data-page="where" data-i18n="nav.where" class="tab-where"></a>
+      <a href="#where" data-page="where" data-i18n="nav.where"></a>
     </nav>
     <div class="seg lang" id="lang">
       <button data-lang="ru" aria-pressed="true">RU</button>
@@ -30,111 +29,137 @@
   </div>
 </header>
 
-<main class="wrap">
+<main>
   <section class="page" id="page-home">
-    <div class="menu-screen">
-      <div class="menu-title">
-        <div class="eyebrow">World of Warcraft: Forever · 1.60.1</div>
-        <h1 class="logo-big" id="home-brand">WoWez</h1>
-        <p class="lead" data-i18n="home.lead"></p>
-      </div>
-      <nav class="main-menu" aria-label="menu">
-        <a class="menu-btn" href="#addons"><span data-i18n="nav.addons"></span><small><b id="st-addons">0</b> <span data-i18n="home.st1"></span></small></a>
-        <a class="menu-btn" href="#classes"><span data-i18n="home.f2t"></span><small><span data-i18n="home.m2"></span></small></a>
-        <a class="menu-btn" href="#doll"><span data-i18n="nav.doll"></span><small data-i18n="home.f3"></small></a>
-        <a class="menu-btn" href="#where"><span data-i18n="nav.where"></span><small><b id="st-where">0</b> <span data-i18n="w.st"></span></small></a>
-      </nav>
-      <div class="demo">
-        <div class="demo-label" id="demo-label"></div>
-        <div class="castbar" id="demo-cast"><i></i><span></span></div>
-        <div class="actionbar" id="demo-bar"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page" id="page-addons">
-    <div class="section-head">
-      <div><div class="eyebrow" data-i18n="addons.eyebrow"></div><h2 class="h-lg" data-i18n="nav.addons"></h2><p class="lead" data-i18n="addons.lead"></p></div>
-    </div>
-    <div class="controls">
-      <label class="search"><span>🔍</span><input type="search" id="q" data-i18n-ph="addons.search"></label>
-      <div class="seg" id="kind">
-        <button data-kind="all" aria-pressed="true" data-i18n="addons.all"></button>
-        <button data-kind="ours" aria-pressed="false" data-i18n="addons.ours"></button>
-        <button data-kind="recommended" aria-pressed="false" data-i18n="addons.rec"></button>
+    <div class="hero">
+      <div class="wrap hero-in">
+        <div class="hero-text">
+          <div class="live"><i></i><span data-i18n="home.live"></span></div>
+          <h1 data-i18n="home.h1"></h1>
+          <p class="lead" data-i18n="home.lead"></p>
+          <div class="cta">
+            <a class="btn primary big" href="#classes" data-i18n="home.cta1"></a>
+            <a class="btn big" href="#addons" data-i18n="home.cta2"></a>
+            <a class="btn big ghost" href="#where" data-i18n="home.cta3"></a>
+          </div>
+        </div>
+        <div class="hero-card card">
+          <div class="card-label" data-i18n="home.demo"></div>
+          <div class="demo">
+            <div class="demo-label" id="demo-label"></div>
+            <div class="castbar" id="demo-cast"><i></i><span></span></div>
+            <div class="actionbar" id="demo-bar"></div>
+          </div>
+          <div class="stats-row" id="home-stats"></div>
+        </div>
       </div>
     </div>
-    <div class="questlog">
-      <div class="ql-list" id="addon-grid" role="listbox"></div>
-      <article class="ql-detail" id="addon-detail"></article>
+    <div class="wrap home-body">
+      <h2 class="h2" data-i18n="home.pick"></h2>
+      <div class="class-pick" id="home-classes"></div>
+      <div class="home-cols">
+        <div class="card">
+          <div class="card-head"><h3 data-i18n="home.addonsT"></h3><a href="#addons" class="more" data-i18n="home.all"></a></div>
+          <div id="home-addons" class="mini-list"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3 data-i18n="home.changesT"></h3><a href="#classes" class="more" data-i18n="home.all"></a></div>
+          <div id="home-changes" class="mini-list"></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="page" id="page-classes">
-    <div class="section-head">
-      <div><div class="eyebrow" data-i18n="classes.eyebrow"></div><h2 class="h-lg" data-i18n="home.f2t"></h2>
-      <p class="lead" data-i18n="classes.lead"></p></div>
+    <div class="wrap">
+      <div class="crumbs" id="class-crumbs"></div>
+      <div class="class-strip" id="class-grid"></div>
+      <div id="class-view"></div>
     </div>
-    <div class="class-grid" id="class-grid"></div>
-    <div id="class-view"></div>
+  </section>
+
+  <section class="page" id="page-addons">
+    <div class="wrap narrow">
+      <div class="crumbs"><a href="#home" data-i18n="nav.home"></a><span>/</span><b data-i18n="nav.addons"></b></div>
+      <div class="eyebrow" data-i18n="addons.eyebrow"></div>
+      <h1 class="h1" data-i18n="addons.h1"></h1>
+      <p class="lead" data-i18n="addons.lead"></p>
+      <div class="controls">
+        <label class="search"><input type="search" id="q" data-i18n-ph="addons.search"></label>
+        <div class="seg" id="kind">
+          <button data-kind="all" aria-pressed="true" data-i18n="addons.all"></button>
+          <button data-kind="ours" aria-pressed="false" data-i18n="addons.ours"></button>
+          <button data-kind="plugins" aria-pressed="false" data-i18n="addons.plugins"></button>
+          <button data-kind="recommended" aria-pressed="false" data-i18n="addons.rec"></button>
+        </div>
+      </div>
+      <div class="status-key" id="status-key"></div>
+      <div id="addon-list" class="addon-list"></div>
+      <details class="card howto" id="howto">
+        <summary data-i18n="up.title"></summary>
+        <div id="howto-body"></div>
+      </details>
+    </div>
   </section>
 
   <section class="page" id="page-doll">
-    <div class="section-head">
-      <div><div class="eyebrow" data-i18n="doll.eyebrow"></div><h2 class="h-lg" data-i18n="nav.doll"></h2>
-      <p class="lead" data-i18n="doll.lead"></p></div>
+    <div class="wrap">
+      <div class="crumbs"><a href="#home" data-i18n="nav.home"></a><span>/</span><b data-i18n="nav.doll"></b></div>
+      <div class="eyebrow" data-i18n="doll.eyebrow"></div>
+      <h1 class="h1" data-i18n="nav.doll"></h1>
+      <p class="lead" data-i18n="doll.lead"></p>
+      <div class="doll-top">
+        <input id="doll-name" maxlength="24" data-i18n-ph="doll.name">
+        <select id="doll-class" aria-label="class"></select>
+        <select id="doll-spec" aria-label="spec"></select>
+        <button class="btn primary" id="doll-bis" data-i18n="doll.bis"></button>
+        <button class="btn" id="doll-share" data-i18n="doll.share"></button>
+        <button class="btn ghost" id="doll-reset" data-i18n="doll.reset"></button>
+        <input id="doll-share-url" readonly hidden>
+      </div>
+      <div class="doll-wrap">
+        <div class="doll" id="doll-grid"></div>
+        <aside class="card doll-side" id="doll-summary"></aside>
+      </div>
     </div>
-    <div class="doll-top">
-      <input id="doll-name" maxlength="24" data-i18n-ph="doll.name">
-      <select id="doll-class"></select>
-      <select id="doll-spec"></select>
-      <button class="btn" id="doll-share" data-i18n="doll.share"></button>
-      <button class="btn" id="doll-reset" data-i18n="doll.reset"></button>
-      <input id="doll-share-url" readonly hidden>
-    </div>
-    <div class="doll" id="doll-grid"></div>
-    <div class="doll-summary glass" id="doll-summary"></div>
   </section>
+
   <section class="page" id="page-where">
-    <div class="section-head">
-      <div><div class="eyebrow" data-i18n="w.eyebrow"></div><h2 class="h-lg" data-i18n="nav.where"></h2>
-      <p class="lead" data-i18n="w.lead"></p></div>
+    <div class="wrap narrow">
+      <div class="crumbs"><a href="#home" data-i18n="nav.home"></a><span>/</span><b data-i18n="nav.where"></b></div>
+      <div class="eyebrow" data-i18n="w.eyebrow"></div>
+      <h1 class="h1" data-i18n="nav.where"></h1>
+      <p class="lead" data-i18n="w.lead"></p>
+      <div class="card where-box">
+        <label class="search big"><input type="search" id="wq" autocomplete="off" data-i18n-ph="w.ph"></label>
+        <p class="muted small" data-i18n="w.hint"></p>
+        <a class="btn" id="where-wh" target="_blank" rel="noopener" hidden></a>
+      </div>
+      <ul class="where-out" id="where-out"></ul>
+      <div class="source"><span data-i18n="w.src"></span> <a href="https://daybreakforever.com/" target="_blank" rel="noopener">daybreakforever.com (datamine 1.60.1) ↗</a></div>
     </div>
-    <div class="where-box glass">
-      <label class="search where-search"><span>🔍</span><input type="search" id="wq" autocomplete="off" data-i18n-ph="w.ph"></label>
-      <p class="muted small flat" data-i18n="w.hint"></p>
-      <a class="btn primary" id="where-wh" target="_blank" rel="noopener" hidden></a>
-    </div>
-    <ul class="where-out" id="where-out"></ul>
-    <div class="source"><span data-i18n="w.src"></span> <a href="https://daybreakforever.com/" target="_blank" rel="noopener">daybreakforever.com (datamine 1.60.1) ↗</a></div>
   </section>
 </main>
 
-<dialog id="slot-dialog">
-  <form method="dialog" id="slot-form">
-    <h3 id="slot-title"></h3>
-    <label><span data-i18n="dlg.name"></span><input name="name" id="f-name" maxlength="60" placeholder="Lionheart Helm"></label>
-    <label><span data-i18n="dlg.q"></span>
-      <select name="q" id="f-q">
-        <option value="common" data-i18n="q.common"></option>
-        <option value="uncommon" data-i18n="q.uncommon"></option>
-        <option value="rare" data-i18n="q.rare" selected></option>
-        <option value="epic" data-i18n="q.epic"></option>
-        <option value="legendary" data-i18n="q.legendary"></option>
-      </select>
-    </label>
-    <label><span data-i18n="dlg.ilvl"></span><input name="ilvl" id="f-ilvl" type="number" min="1" max="200" placeholder="66"></label>
-    <label><span data-i18n="dlg.url"></span><input name="url" id="f-url" type="url" placeholder="https://…"></label>
-    <div class="row">
-      <button class="btn" value="clear" data-i18n="dlg.clear"></button>
-      <button class="btn" value="cancel" data-i18n="dlg.cancel"></button>
-      <button class="btn primary" value="save" data-i18n="dlg.save"></button>
-    </div>
-  </form>
+<dialog id="item-dialog">
+  <div class="dlg-head">
+    <h3 id="item-title"></h3>
+    <button class="icon-btn" id="item-close" aria-label="close">✕</button>
+  </div>
+  <label class="search"><input type="search" id="item-q" autocomplete="off" data-i18n-ph="doll.find"></label>
+  <div class="item-results" id="item-results"></div>
+  <div class="dlg-foot"><button class="btn ghost" id="item-clear" data-i18n="doll.clearSlot"></button></div>
 </dialog>
 
+<dialog id="add-dialog">
+  <div class="dlg-head"><h3 data-i18n="up.formT"></h3><button class="icon-btn" id="add-close" aria-label="close">✕</button></div>
+  <form id="add-form" class="add-form"></form>
+</dialog>
+
+<div class="tip" id="item-tip" hidden></div>
+
 <footer>
-  <div class="wrap">
+  <div class="wrap foot-in">
     <span id="foot-made"></span>
     <span id="foot-src"></span>
   </div>
@@ -146,8 +171,11 @@
 <script src="data/classes.en.js"></script>
 <script src="data/abilities.ru.js"></script>
 <script src="data/talents.js"></script>
+<script src="data/presets.js"></script>
+<script src="data/art.js"></script>
 <script src="data/icons.js"></script>
 <script src="data/where.js"></script>
+<script src="data/items.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

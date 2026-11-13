@@ -1,0 +1,27 @@
+{
+  "name": "BigWigs",
+  "category": {
+    "ru": "Боссы",
+    "en": "Boss timers"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Более лёгкая альтернатива DBM. Ставьте что-то одно, не оба сразу.",
+    "en": "A lighter alternative to DBM. Pick one, not both."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/big-wigs"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/BigWigsMods/BigWigs_Classic"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

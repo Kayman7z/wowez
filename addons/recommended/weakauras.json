@@ -1,0 +1,27 @@
+{
+  "name": "WeakAuras",
+  "category": {
+    "ru": "Баффы и кулдауны",
+    "en": "Buffs & cooldowns"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Свои значки, полосы и надписи для баффов, дебаффов и кулдаунов, плюс импорт готовых наборов. Старые импорты из Classic могут следить не за теми заклинаниями.",
+    "en": "Custom icons, bars and text for buffs, debuffs and cooldowns, plus imports. Old Classic imports may track the wrong spells."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/weakauras-2"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/WeakAuras/WeakAuras2/releases"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

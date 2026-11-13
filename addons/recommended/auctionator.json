@@ -1,0 +1,23 @@
+{
+  "name": "Auctionator",
+  "category": {
+    "ru": "Аукцион",
+    "en": "Auction house"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Списки покупок, быстрые сканы цен и удобная продажа на аукционе. Цены видны в подсказках предметов.",
+    "en": "Shopping lists, quick price scans and faster selling, with prices in item tooltips."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/auctionator"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

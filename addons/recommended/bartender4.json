@@ -1,0 +1,27 @@
+{
+  "name": "Bartender4",
+  "category": {
+    "ru": "Интерфейс",
+    "en": "UI"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Заменяет стандартные панели команд: их можно двигать, масштабировать и прятать.",
+    "en": "Replaces the default action bars with bars you can move, resize and hide."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/bartender4"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Nevcairiel/Bartender4"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

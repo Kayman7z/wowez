@@ -1,5 +1,11 @@
 # WoWez
 
-Аддоны, ротации, калькулятор талантов, кукла персонажа и поиск «Где?» для World of Warcraft: Forever. Сайт Kayman и Danrer.
+Гайды, сборки талантов, экипировка, аддоны и поиск по миру для World of Warcraft: Forever. Сайт Kayman и Danrer: https://kayman7z.github.io/wowez/
 
-Статический сайт без сборки: index.html, styles.css, app.js, data/*.js, icons/. Свои аддоны добавляются в data/addons.js.
+## Как добавить аддон
+- Свой аддон: загрузите zip в папку `addons/ours` (на GitHub: Add file → Upload files → Commit changes).
+- Дополнение к известному аддону: zip в `addons/plugins`.
+- Чужой аддон по ссылке или русское описание: форма «Добавить аддон» на странице «Аддоны» сайта.
+
+Название, версия, автор и описание берутся из `.toc` внутри zip. Сайт подхватывает новые файлы сам.
+`tools/build_addons.py` собирает `data/addons.js` заранее (необязательно).

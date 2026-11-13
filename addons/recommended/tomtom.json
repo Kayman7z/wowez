@@ -1,0 +1,23 @@
+{
+  "name": "TomTom",
+  "category": {
+    "ru": "Карта",
+    "en": "Map"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Показывает координаты и ставит точки командой /way со стрелкой-указателем. Пригодится в новых зонах Forever.",
+    "en": "Shows coordinates and sets waypoints with /way and an arrow. Handy in the new Forever zones."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/tomtom"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}

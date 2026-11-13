@@ -1,0 +1,27 @@
+{
+  "name": "Details! Damage Meter",
+  "category": {
+    "ru": "Урон и угроза",
+    "en": "Damage & threat"
+  },
+  "status": "classic",
+  "checked": "2026-09-16",
+  "description": {
+    "ru": "Счётчик урона, исцеления, прерываний и смертей по каждому бою с подробной разбивкой по способностям. Лучший способ проверить новые таланты Forever.",
+    "en": "Damage, healing, interrupts and deaths per fight with a per-spell breakdown. The quickest way to test new Forever talents."
+  },
+  "links": [
+    {
+      "label": "CurseForge",
+      "url": "https://www.curseforge.com/wow/addons/details"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Tercioo/Details-Damage-Meter"
+    }
+  ],
+  "statusSource": {
+    "label": "wowforeverbuilds.com",
+    "url": "https://wowforeverbuilds.com/addons"
+  }
+}
