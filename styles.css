@@ -371,3 +371,10 @@ footer a { color: var(--muted); text-decoration: underline; }
 .controls .seg { max-width: 100%; overflow-x: auto; }
 .badge { white-space: normal; }
 @media (max-width: 600px) { .addon { grid-template-columns: 1fr; } .addon .ai { width: 40px; height: 40px; font-size: 18px; } .addon h3 small { margin-left: 0; width: 100%; } }
+/* выбор сборки талантов (PvE/PvP, источник) */
+.tal-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 6px 0 2px; }
+.tal-sel { display: flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; }
+.tal-sel span { color: var(--muted); font-size: 13px; }
+.tal-sel select { min-width: 0; max-width: 100%; background: var(--bg2); color: inherit; border: 1px solid var(--line2); border-radius: 8px; padding: 7px 10px; font: inherit; font-size: 14px; }
+.tal-note { margin: 0; color: var(--gold); }
+.tal-sel select option { background: #151821; }

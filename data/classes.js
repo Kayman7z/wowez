@@ -27,6 +27,7 @@ window.CLASSES = [
           ["Mortal Strike", "по перезарядке"],
           ["Spearing Strike", ""],
           ["Slam", ""],
+          ["Execute", "цель ниже 20%"],
           ["Hamstring", "филлер при лишней ярости"]
         ],
         cds: "Recklessness — самый сильный кулдаун на урон; также Bloodrage, Retaliation, Shield Wall, Berserker Rage.",
@@ -85,12 +86,13 @@ window.CLASSES = [
         name: "Свет", role: "Лекарь", split: null, beta: true,
         key: ["Holy Shock", "Illumination", "Reverence", "Purifying Power", "Benediction", "Healing Light", "Holy Power", "Divine Favor", "Light's Vigil"],
         rot: [
+          ["Oath of Light", "на основную цель, обычно на танка"],
           ["Печать на цели", "обычно Seal of Wisdom"],
           ["Holy Shock", "если цель может умереть до конца каста или вы двигаетесь"],
           ["Holy Light", "заранее на цель под сильным уроном"],
           ["Holy Light", "по проку Infusion of Light"],
           ["Flash of Light", "на лёгкий урон"],
-          ["Light's Vigil", "только когда очень нужен массовый хил (дорого)"]
+          ["Light's Vigil", "повесить заранее: следующий Holy Shock по цели без КД и лечит всю группу"]
         ],
         cds: "Divine Shield, Divine Protection, Blessing of Protection, Lay on Hands, Blessing of Sacrifice.",
         aoe: "Light's Vigil — единственный массовый хил.",
@@ -336,23 +338,24 @@ window.CLASSES = [
     races: ["Орк", "Дворф", "Таурен", "Тролль", "Небеснорожденный (Ваятели ветра)"],
     changes: [
       "Lightning Bolt усилен (макс. ранг +80%), Chain Lightning кастуется 2,5 сек.",
-      "Stormstrike 150% урона оружия, кулдаун 6 сек.",
+      "Stormstrike после хотфикса 10.11: 100% урона оружия, кулдаун 8 сек.",
       "Riptide (Быстрина) — только периодическое лечение, КД 12 сек, на 40% дешевле.",
-      "По изменениям 03.11 Lava Burst заменён талантом Зов грома. Warcraft Tavern пока советует Lava Burst — проверяйте в игре."
+      "Lava Burst (Выброс лавы) удалён из игры, вместо него талант Call of Thunder (Зов грома)."
     ],
     specs: [
       {
         name: "Стихии", role: "Дальний бой", split: null, beta: true,
-        key: ["Lightning Overload", "Lava Burst", "Elemental Fury", "Elemental Focus", "Trial By Fire", "Earthbound", "Convection", "Mindfulness"],
+        key: ["Lightning Overload", "Call of Thunder", "Lightning Mastery", "Elemental Fury", "Elemental Focus", "Concussion", "Trial by Fire", "Convection"],
         rot: [
-          ["Searing Totem", "держать (сначала войти в бой)"],
-          ["Lava Burst → Flame Shock", "открытие"],
-          ["Flame Shock", "держать"],
-          ["Lava Burst", "по перезарядке"],
-          ["Lightning Bolt", "филлер"]
+          ["Searing Totem", "тотемы ставить до боя"],
+          ["Flame Shock", "держать на цели"],
+          ["Lightning Mastery", "окно 15 сек: Lightning Bolt быстрее, Chain Lightning без КД"],
+          ["Chain Lightning", "в окне Lightning Mastery"],
+          ["Lightning Bolt", "основной каст (Clearcasting — бесплатный)"],
+          ["Earth Shock", "сбить каст"]
         ],
         cds: "",
-        aoe: "Magma Totem рядом с мобами → Lava Burst → Flame Shock → Fire Nova по КД → Chain Lightning, пока хватает маны.",
+        aoe: "Тотем огня рядом с мобами → Chain Lightning → Fire Nova возле тотема (много угрозы) → Lightning Bolt.",
         stats: null, statsNote: "Сила заклинаний — главный стат, затем крит, меткость, интеллект. Финальный приоритет на 60 не опубликован.",
         src: WT + "elemental-shaman/"
       },

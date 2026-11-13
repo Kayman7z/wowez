@@ -66,7 +66,7 @@ window.ABILITIES_RU = {
   "Spiritual Guidance": "Духовное наставление", "Spiritual Healing": "Духовное исцеление",
   "Improved Renew": "Улучшенное обновление", "Soul Warding": "Защита души", "Renewed Hope": "Вновь обретенная надежда",
   // Шаман
-  "Searing Totem": "Опаляющий тотем", "Lava Burst": "Выброс лавы", "Flame Shock": "Огненный шок",
+  "Searing Totem": "Опаляющий тотем", "Oath of Light": "Клятва Света", "Lightning Mastery": "Мастерство молний", "Call of Thunder": "Зов грома", "Lava Burst": "Выброс лавы", "Flame Shock": "Огненный шок",
   "Chain Lightning": "Цепная молния", "Lightning Bolt": "Молния", "Magma Totem": "Тотем магмы", "Fire Nova": "Кольцо огня",
   "Lightning Shield": "Щит молний", "Windfury Weapon": "Оружие неистовства ветра",
   "Rockbiter Weapon": "Оружие камнедробителя", "Stormstrike": "Удар бури", "Earth Shock": "Земной шок",

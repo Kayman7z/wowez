@@ -37,7 +37,7 @@
       "c.names": "Названия способностей даны как в русском клиенте. Новые способности Forever, у которых ещё нет русского названия, оставлены на английском. Наведите на название, чтобы увидеть английский вариант.",
       "g.lead": "Лучшие предметы для специализации по слотам. Первым идёт лучший, ниже замены. Наведите на предмет, чтобы увидеть характеристики.",
       "g.lvl": "Уровень", "g.src": "Списки BiS:", "g.doll": "Открыть в кукле →",
-      "tal.title": "Таланты 60 уровня", "tal.reset": "Очистить", "tal.preset": "Сборка из гайда", "tal.presetSrc": "Сборка:",
+      "tal.title": "Таланты 60 уровня", "tal.reset": "Очистить", "tal.preset": "Сборка из гайда", "tal.presetSrc": "Сборка:", "tal.pick": "Сборка", "tal.partial": "На сайте-источнике в этой сборке распределено {n} из 51 очка, остальные можно добавить самому.", "tal.calc": "открыть в их калькуляторе",
       "tal.help": "Открыта рекомендуемая PvE-сборка. Левый клик добавляет очко, правый убирает. Изменения сохраняются в браузере, «Сборка из гайда» возвращает исходную.",
       "tal.client": "описания талантов из клиента 1.60.1 (англ.)", "tal.needRow": "Нужно {n} очков в дереве «{tree}»", "tal.needReq": "Нужно {n} очк. в таланте «{name}»", "tal.rank": "Ранг", "tal.next": "Следующий ранг:",
       "addons.eyebrow": "Каталог", "addons.h1": "Аддоны для WoW Forever", "addons.lead": "Наши аддоны, дополнения к известным аддонам и проверенные чужие. У каждого видно, работает ли он в Forever и когда это проверяли.",
@@ -80,7 +80,7 @@
       "c.changesSrc": "wow.gg · changes from 11/03", "c.source": "Source:", "c.guideSrc": "Rotation & stats:", "c.names": "",
       "g.lead": "Best items for the spec by slot. The first is the best, alternatives below. Hover an item to see its stats.",
       "g.lvl": "Level", "g.src": "BiS lists:", "g.doll": "Open in character sheet →",
-      "tal.title": "Level 60 talents", "tal.reset": "Clear", "tal.preset": "Guide build", "tal.presetSrc": "Build:",
+      "tal.title": "Level 60 talents", "tal.reset": "Clear", "tal.preset": "Guide build", "tal.presetSrc": "Build:", "tal.pick": "Build", "tal.partial": "The source spends only {n} of 51 points in this build; add the rest yourself.", "tal.calc": "open in their calculator",
       "tal.help": "The recommended PvE build is loaded. Left click adds a point, right click removes one. Changes are saved in this browser; \"Guide build\" restores the original.",
       "tal.client": "talent text from client 1.60.1", "tal.needRow": "Requires {n} points in {tree}", "tal.needReq": "Requires {n} points in {name}", "tal.rank": "Rank", "tal.next": "Next rank:",
       "addons.eyebrow": "Catalog", "addons.h1": "Addons for WoW Forever", "addons.lead": "Our addons, plugins for well-known addons and tested third-party ones. Each shows whether it works in Forever and when that was checked.",
@@ -287,7 +287,6 @@
     const host = new URL(s.src).hostname.replace("www.", "");
     const healer = roleOf(s.role) === "heal";
     $("#class-crumbs").innerHTML = `<a href="#home">${esc(t("nav.home"))}</a><span>/</span><a href="#classes">${esc(t("nav.guides"))}</a><span>/</span><a href="#classes-${c.id}">${esc(c.name)}</a><span>/</span><b>${esc(s.name)}</b>`;
-    const preset = ((window.TALENT_PRESETS || {})[c.id] || [])[specIdx];
     const lvls = Object.keys(BIS.lists).sort((a, b) => b - a);
     let gearLvl = store.get("gear-lvl") || "60"; if (!lvls.includes(gearLvl)) gearLvl = lvls[0];
     $("#class-view").innerHTML = `
@@ -300,7 +299,7 @@
       <div class="spec-tabs">${c.specs.map((x, i) => `<a class="spec-tab ${i === specIdx ? "active" : ""}" href="#classes-${c.id}-${i}" style="--c:${c.color};text-decoration:none"><img src="${specIcon(c.id, i)}" alt=""><span>${esc(x.name)}<small>${esc(roleTag(x.role))}</small></span></a>`).join("")}</div>
       <nav class="toc"><a href="#" data-go="sec-tal">${esc(t("toc.talents"))}</a><a href="#" data-go="sec-rot">${esc(t("toc.rot"))}</a><a href="#" data-go="sec-stats">${esc(t("toc.stats"))}</a><a href="#" data-go="sec-gear">${esc(t("toc.gear"))}</a>${c.changes.length ? `<a href="#" data-go="sec-ch">${esc(t("toc.changes"))}</a>` : ""}</nav>
 
-      <section class="sec" id="sec-tal"><h2 class="sec-title">${esc(t("tal.title"))}${preset ? `<small>${esc(preset.split)}</small>` : ""}</h2>
+      <section class="sec" id="sec-tal"><h2 class="sec-title">${esc(t("tal.title"))}<small id="tal-split"></small></h2>
         <div class="card tal-wrap" id="talents" style="--c:${c.color}"></div></section>
 
       <section class="sec" id="sec-rot" style="--c:${c.color}"><h2 class="sec-title">${esc(t(healer ? "c.heal" : "c.rot"))}<small>${esc(t("c.prio"))}</small></h2>
@@ -365,8 +364,11 @@
   const talentKey = c => "tal-" + c + "-" + specIdx;
   const treePoints = tree => tree.talents.reduce((n, x) => n + (talState[x.id] || 0), 0);
   const totalPoints = trees => trees.reduce((n, tr) => n + treePoints(tr), 0);
-  function presetState(cid, trees) {
-    const p = (PRESETS[cid] || [])[specIdx]; if (!p) return null;
+  const variants = cid => { const v = (PRESETS[cid] || [])[specIdx]; return !v ? [] : Array.isArray(v) ? v : [Object.assign({ mode: "pve", site: "wowforeverbuilds.com", label: { ru: "PvE", en: "PvE" } }, v)]; };
+  const varKey = cid => "talv-" + cid + "-" + specIdx;
+  const curVar = cid => { const v = variants(cid); const i = +(store.get(varKey(cid)) || 0); return v[i] ? i : 0; };
+  function presetState(cid, trees, vi) {
+    const p = variants(cid)[vi ?? curVar(cid)]; if (!p) return null;
     const st = {};
     p.b.split("-").forEach((digs, ti) => {
       if (!trees[ti]) return;
@@ -398,13 +400,22 @@
     if (!host || !trees) { if (host) host.innerHTML = ""; return; }
     const k = c.id + "-" + specIdx;
     if (talKey !== k) { talKey = k; talState = store.get(talentKey(c.id)) || presetState(c.id, trees) || {}; }
-    const preset = (PRESETS[c.id] || [])[specIdx];
+    const vars = variants(c.id), vi = curVar(c.id), preset = vars[vi];
+    const mode = preset ? preset.mode : "pve";
+    const modes = ["pve", "pvp"].filter(m => vars.some(v => v.mode === m));
     const used = totalPoints(trees);
+    const sp = $("#tal-split"); if (sp) sp.textContent = trees.map(treePoints).join("/");
     host.innerHTML = `
       <div class="tal-head">
         <div class="tal-count"><b>${used}</b> / ${MAX_POINTS} · ${trees.map(treePoints).join(" / ")}</div>
         <div class="sp">${preset ? `<button class="btn sm primary" id="tal-preset">${esc(t("tal.preset"))}</button>` : ""}<button class="btn sm ghost" id="tal-reset">${esc(t("tal.reset"))}</button></div>
       </div>
+      ${preset ? `<div class="tal-pick">
+        ${modes.length > 1 ? `<div class="seg" id="tal-mode">${modes.map(m => `<button data-mode="${m}" aria-pressed="${m === mode}">${m === "pve" ? "PvE" : "PvP"}</button>`).join("")}</div>` : ""}
+        <label class="tal-sel"><span>${esc(t("tal.pick"))}</span><select id="tal-var">${vars.map((v, i) => v.mode === mode ? `<option value="${i}" ${i === vi ? "selected" : ""}>${esc(v.site)} · ${esc(pick(v.label))} · ${esc(v.split || "")}</option>` : "").join("")}</select></label>
+        <span class="muted small">${esc(t("tal.presetSrc"))} <a href="${esc(preset.src)}" target="_blank" rel="noopener">${esc(preset.site)} ↗</a>${preset.calc ? ` · <a href="${esc(preset.calc)}" target="_blank" rel="noopener">${esc(t("tal.calc"))} ↗</a>` : ""}</span>
+      </div>
+      ${preset.pts && preset.pts < MAX_POINTS ? `<p class="muted small tal-note">${esc(t("tal.partial").replace("{n}", preset.pts))}</p>` : ""}` : ""}
       <p class="muted small" style="margin:0">${esc(t("tal.help"))}</p>
       <div class="tal-trees">${trees.map((tr, ti) => {
         const rows = Math.max(...tr.talents.map(x => x.row)) + 1;
@@ -430,7 +441,7 @@
           </div></div></div>`;
       }).join("")}</div>
       <div class="source">${esc(t("c.source"))} <a href="https://wowforevercalc.com/${c.id}/" target="_blank" rel="noopener">wowforevercalc.com ↗</a><span>${esc(t("tal.client"))}</span>
-      ${preset ? `<span>· ${esc(t("tal.presetSrc"))} <a href="${esc(preset.src)}" target="_blank" rel="noopener">wowforeverbuilds.com ↗</a></span>` : ""}</div>`;
+</div>`;
     $$(".tal", host).forEach(b => {
       const tr = trees[+b.dataset.tree]; const x = tr.talents.find(y => y.id === +b.dataset.id);
       const show = e => {
@@ -455,6 +466,9 @@
     });
     $("#tal-reset").addEventListener("click", () => { talState = {}; store.set(talentKey(c.id), talState); renderTalents(c); });
     $("#tal-preset")?.addEventListener("click", () => { talState = presetState(c.id, trees) || {}; store.set(talentKey(c.id), null); renderTalents(c); });
+    const applyVar = i => { store.set(varKey(c.id), i); talState = presetState(c.id, trees, i) || {}; store.set(talentKey(c.id), null); renderTalents(c); };
+    $("#tal-var")?.addEventListener("change", e => applyVar(+e.target.value));
+    $$("#tal-mode button", host).forEach(b => b.addEventListener("click", () => { const i = vars.findIndex(v => v.mode === b.dataset.mode); if (i >= 0 && vars[i].mode !== mode) applyVar(i); }));
   }
 
   /* ---------- кукла персонажа ---------- */
