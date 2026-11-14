@@ -33,7 +33,7 @@
       "c.rot": "Ротация на одну цель", "c.heal": "Приоритет лечения", "c.prio": "по приоритету", "c.bar": "Панель команд",
       "c.play": "▶ Проиграть", "c.stop": "■ Стоп", "c.cds": "Кулдауны и советы", "c.aoe": "АоЕ и несколько целей",
       "c.key": "Ключевые таланты", "c.stats": "Приоритет характеристик", "c.races": "Расы", "c.changes": "Что изменилось у класса",
-      "c.changesSrc": "wow.gg · изменения от 03.11", "c.source": "Источник:", "c.guideSrc": "Ротация и статы:",
+      "c.changesSrc": "wow.gg · большой список изменений от 03.11", "c.hotfixSrc": "Blizzard · хотфиксы 4–12.11", "c.source": "Источник:", "c.guideSrc": "Ротация и статы:",
       "c.names": "Названия способностей даны как в русском клиенте. Новые способности Forever, у которых ещё нет русского названия, оставлены на английском. Наведите на название, чтобы увидеть английский вариант.",
       "g.lead": "Лучшие предметы для специализации по слотам. Первым идёт лучший, ниже замены. Наведите на предмет, чтобы увидеть характеристики.",
       "g.lvl": "Уровень", "g.src": "Списки BiS:", "g.doll": "Открыть в кукле →",
@@ -77,7 +77,7 @@
       "c.rot": "Single-target rotation", "c.heal": "Healing priority", "c.prio": "by priority", "c.bar": "Action bar",
       "c.play": "▶ Play", "c.stop": "■ Stop", "c.cds": "Cooldowns & tips", "c.aoe": "AoE & cleave",
       "c.key": "Key talents", "c.stats": "Stat priority", "c.races": "Races", "c.changes": "Class changes",
-      "c.changesSrc": "wow.gg · changes from 11/03", "c.source": "Source:", "c.guideSrc": "Rotation & stats:", "c.names": "",
+      "c.changesSrc": "wow.gg · full change list from Nov 3", "c.hotfixSrc": "Blizzard · hotfixes Nov 4–12", "c.source": "Source:", "c.guideSrc": "Rotation & stats:", "c.names": "",
       "g.lead": "Best items for the spec by slot. The first is the best, alternatives below. Hover an item to see its stats.",
       "g.lvl": "Level", "g.src": "BiS lists:", "g.doll": "Open in character sheet →",
       "tal.title": "Level 60 talents", "tal.reset": "Clear", "tal.preset": "Guide build", "tal.presetSrc": "Build:", "tal.pick": "Build", "tal.partial": "The source spends only {n} of 51 points in this build; add the rest yourself.", "tal.calc": "open in their calculator",
@@ -339,7 +339,7 @@
 
       ${c.changes.length ? `<section class="sec" id="sec-ch"><h2 class="sec-title">${esc(t("c.changes"))}</h2><div class="card">
         <ul class="changes">${c.changes.map(x => `<li>${esc(ab(x))}</li>`).join("")}</ul>
-        <div class="source"><a href="${esc(SRC.changes)}" target="_blank" rel="noopener">${esc(t("c.changesSrc"))} ↗</a></div></div></section>` : ""}`;
+        <div class="source">${SRC.hotfixes ? `<a href="${esc(SRC.hotfixes)}" target="_blank" rel="noopener">${esc(t("c.hotfixSrc"))} ↗</a> · ` : ""}<a href="${esc(SRC.changes)}" target="_blank" rel="noopener">${esc(t("c.changesSrc"))} ↗</a></div></div></section>` : ""}`;
     $$(".toc a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); document.getElementById(a.dataset.go)?.scrollIntoView({ behavior: "smooth" }); }));
     $$(".gear-tabs [data-lvl]").forEach(b => b.addEventListener("click", () => {
       store.set("gear-lvl", b.dataset.lvl);

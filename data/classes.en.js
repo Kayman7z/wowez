@@ -6,7 +6,7 @@ const WT = "https://www.warcrafttavern.com/forever/guides/";
 window.CLASSES_EN = [
   { id: "warrior", name: "Warrior", trees: ["Arms", "Fury", "Protection"],
     races: ["Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Skyborne"],
-    changes: [],
+    changes: ["Nov 10: Sweeping Strikes (Arms) no longer spends charges when there is no second target.", "Nov 4: Defiance (Protection) threat with a shield 7/13/20%; Defensive Stance threat +80% (was 30%)."],
     specs: [
       { name: "Arms", role: "Melee DPS", split: null, beta: true,
         key: ["Mortal Strike", "Bloodthrill", "Improved Rend", "Improved Overpower", "Improved Slam", "Impale", "Two-Handed Specialization", "Weaponmaster"],
@@ -29,7 +29,7 @@ window.CLASSES_EN = [
     ] },
   { id: "paladin", name: "Paladin", trees: ["Holy", "Protection", "Retribution"],
     races: ["Human", "Dwarf", "Undead"],
-    changes: ["Righteous Fury learned at level 10 (was 16).", "Removed: Blessing of Salvation, Seal of Wrath, One-Handed Weapon Specialization.", "New talents: Oath of Light, Boundless Light (Holy), Oath of the Shield and Stoicism (Protection).", "Improved Seals is now 5 points; Divine Precision gives 4/8% hit."],
+    changes: ["Nov 11: Judgement is now a ranged attack: uses ranged hit and no longer triggers melee procs.", "Nov 11: Unsealed Fury (Retribution) no longer echoes Windfury Totem attacks.", "Nov 9: Consecration no longer loses its bonus damage when enemies despawn.", "Righteous Fury learned at level 10 (was 16).", "Removed: Blessing of Salvation, Seal of Wrath, One-Handed Weapon Specialization.", "New talents: Oath of Light, Boundless Light (Holy), Oath of the Shield and Stoicism (Protection).", "Improved Seals is now 5 points; Divine Precision gives 4/8% hit."],
     specs: [
       { name: "Holy", role: "Healer", split: null, beta: true,
         key: ["Holy Shock", "Illumination", "Reverence", "Purifying Power", "Benediction", "Healing Light", "Holy Power", "Divine Favor", "Light's Vigil"],
@@ -51,7 +51,7 @@ window.CLASSES_EN = [
     ] },
   { id: "hunter", name: "Hunter", trees: ["Beast Mastery", "Marksmanship", "Survival"],
     races: ["Human", "Orc", "Dwarf", "Night Elf", "Tauren", "Troll", "Skyborne"],
-    changes: ["All traps share a 30 sec cooldown.", "Arcane Shot and Serpent Sting buffed, with higher Attack Power scaling.", "Aspect of the Hawk: attack power bonus nearly doubled.", "Sniper Shot (Marksmanship) bonus damage doubled."],
+    changes: ["Nov 10: Arcane Shot and Summon Hawk cost 11% of base mana at all ranks; hawk melee damage about +80%.", "Nov 10: pet health is 115% (a bug made it 150%).", "Nov 11: Volley no longer triggers procs and stops when you move.", "All traps share a 30 sec cooldown.", "Arcane Shot and Serpent Sting buffed, with higher Attack Power scaling.", "Aspect of the Hawk: attack power bonus nearly doubled.", "Sniper Shot (Marksmanship) bonus damage doubled."],
     specs: [
       { name: "Beast Mastery", role: "Ranged DPS", split: [31, 20, 0],
         key: ["Bestial Wrath", "Deadly Aspects", "Focused Fire", "Unleashed Fury", "Ferocity", "Frenzy", "Mortal Shots", "Careful Aim", "Rapid Killing"],
@@ -73,7 +73,7 @@ window.CLASSES_EN = [
     ] },
   { id: "rogue", name: "Rogue", trees: ["Assassination", "Combat", "Subtlety"],
     races: ["Human", "Orc", "Dwarf", "Night Elf", "Undead", "Gnome", "Troll", "Skyborne"],
-    changes: ["New passive Composure (level 18) and a new off-hand attack (level 24).", "Poisons: attack power scaling doubled.", "Removed: Murder, Cheat Death, Throat Slit, Thousand Cuts.", "Mutilate moved to tier 7, 90% weapon damage."],
+    changes: ["Nov 6: Shank tooltips show Rank 1 and 2, and with Boot Knife the combo points it grants (tooltip only).", "Nov 6: the Quick and the Dead talent works reliably again.", "New passive Composure (level 18) and a new off-hand attack (level 24).", "Poisons: attack power scaling doubled.", "Removed: Murder, Cheat Death, Throat Slit, Thousand Cuts.", "Mutilate moved to tier 7, 90% weapon damage."],
     specs: [
       { name: "Assassination", role: "Melee DPS", split: null,
         key: ["Mutilate", "Venom", "Seal Fate", "Cold Blood", "Vile Poisons", "Improved Poisons", "Lethality", "Malice", "Relentless Strikes"],
@@ -94,7 +94,7 @@ window.CLASSES_EN = [
     ] },
   { id: "priest", name: "Priest", trees: ["Discipline", "Holy", "Shadow"],
     races: ["Human", "Dwarf", "Night Elf", "Undead", "Gnome", "Troll"],
-    changes: ["Shadow Word: Death deals 30% of your max health to you if the target survives.", "Binding Heal replaced: the priest heals for 50% of their Flash Heals on others.", "Cure/Abolish Disease no longer cancel Shadowform."],
+    changes: ["Nov 9: Shadowform no longer breaks on Fear Ward; Power Infusion on allies persists.", "Nov 11: Twilight Focus (Holy) works in Shadowform.", "Nov 10: Holy Nova is unlearned correctly when untalenting.", "Shadow Word: Death deals 30% of your max health to you if the target survives.", "Binding Heal replaced: the priest heals for 50% of their Flash Heals on others.", "Cure/Abolish Disease no longer cancel Shadowform."],
     specs: [
       { name: "Discipline", role: "Healer", split: [31, 20, 0],
         key: ["Penance", "Divine Aegis", "Power Infusion", "Soul Warding", "Renewed Hope", "Inspiration", "Meditation"],
@@ -116,7 +116,7 @@ window.CLASSES_EN = [
     ] },
   { id: "shaman", name: "Shaman", trees: ["Elemental", "Enhancement", "Restoration"],
     races: ["Orc", "Dwarf", "Tauren", "Troll", "Skyborne (Windshapers)"],
-    changes: ["Lightning Bolt buffed (max rank +80%), Chain Lightning has a 2.5 sec cast.", "Stormstrike after the 10 Nov hotfix: 100% weapon damage, 8 sec cooldown.", "Riptide is a HoT only now: 12 sec cooldown, 40% cheaper.", "Lava Burst was removed from the game and replaced by the Call of Thunder talent."],
+    changes: ["Nov 12: Stormstrike 150% → 100% weapon damage, cooldown 6 → 8 sec.", "Nov 12: Maelstrom Weapon: −20% cast time and mana at all ranks, triggers 6–10 times per minute (was 20).", "Nov 12: Mental Dexterity converts 33/66/100% Intellect to attack power (was 50/100/150%).", "Nov 12: weapon imbues and weapon totems now stack (Windfury Weapon + Windfury Totem).", "Nov 9: Lightning Overload deals the correct Lightning Bolt damage.", "Lightning Bolt buffed (max rank +80%), Chain Lightning has a 2.5 sec cast.", "Riptide is a HoT only now: 12 sec cooldown, 40% cheaper.", "Lava Burst was removed from the game and replaced by the Call of Thunder talent."],
     specs: [
       { name: "Elemental", role: "Ranged DPS", split: null, beta: true,
         key: ["Lightning Overload", "Call of Thunder", "Lightning Mastery", "Elemental Fury", "Elemental Focus", "Concussion", "Trial by Fire", "Convection"],
@@ -136,7 +136,7 @@ window.CLASSES_EN = [
     ] },
   { id: "mage", name: "Mage", trees: ["Arcane", "Fire", "Frost"],
     races: ["Human", "Orc", "Undead", "Gnome", "Troll", "Skyborne (High Order)"],
-    changes: ["Removed talents: Frost Blast, Piercing Ice and Arcane Focus (merged into Precision).", "Arcane Blast cost increase per stack 175% → 100%.", "Incineration up to 5 points (10% crit), Critical Mass 3 points (6%).", "Ice Barrier gives +15% Frost damage for 1 min."],
+    changes: ["Nov 9: Arcane Concentration chance is now split across the cast and every missile (it gave 10% on each).", "Nov 9: Flamestrike ticks no longer consume Clearcasting.", "Nov 6: Arcane Blast lasts 18 sec.", "Removed talents: Frost Blast, Piercing Ice and Arcane Focus (merged into Precision).", "Arcane Blast cost increase per stack 175% → 100%.", "Incineration up to 5 points (10% crit), Critical Mass 3 points (6%).", "Ice Barrier gives +15% Frost damage for 1 min."],
     specs: [
       { name: "Arcane", role: "Ranged DPS", split: null,
         key: ["Arcane Blast", "Arcane Power", "Presence of Mind", "Missile Barrage", "Arcane Concentration", "Arcane Wrath", "Arcane Impact", "Heating Up", "Pyroblast"],
@@ -158,7 +158,7 @@ window.CLASSES_EN = [
     ] },
   { id: "warlock", name: "Warlock", trees: ["Affliction", "Demonology", "Destruction"],
     races: ["Human", "Orc", "Undead", "Gnome", "Troll"],
-    changes: ["Spellstone only boosts Shadow damage.", "Pets get 2 health per master's Stamina (was 7.5).", "Drain Soul gives Soul Shards from damage much less often.", "Shadow and Flame 4–20% (was 2–10%)."],
+    changes: ["Nov 10: Wrack −30% damage and no longer boosts DoTs; while channeling, Corruption, Siphon Life and Bane of Agony tick 100% faster.", "Nov 10: Soul Siphon — 4/8/12% per Corruption, Siphon Life and Bane of Agony of yours on the target, up to 36%.", "Nov 10: demon health about +15%, Imp Firebolt (ranks 1–4) damage increased.", "Nov 9: Incinerate is Destruction-only.", "Spellstone only boosts Shadow damage.", "Pets get 2 health per master's Stamina (was 7.5).", "Drain Soul gives Soul Shards from damage much less often.", "Shadow and Flame 4–20% (was 2–10%)."],
     specs: [
       { name: "Affliction", role: "Ranged DPS", split: [35, 11, 5], updated: "2026-11-11",
         key: ["Wrack", "Siphon Life", "Amplify Curse", "Shadow Trance", "Improved Corruption", "Demonic Sacrifice"],
@@ -181,7 +181,7 @@ window.CLASSES_EN = [
     ] },
   { id: "druid", name: "Druid", trees: ["Balance", "Feral Combat", "Restoration"],
     races: ["Night Elf", "Tauren", "Skyborne"],
-    changes: ["Bear Form threat 50% → 115%; Swipe, Claw, Pounce and Shred heavily buffed.", "Berserk removed; Lacerate is now a Feral talent.", "New passive Composure (level 32) and new Feral and Restoration talents.", "Starfire +40% base damage, Regrowth 3 sec cast."],
+    changes: ["Nov 10: Nature's Swiftness (Restoration) also makes Wild Growth instant.", "Nov 11: Rend and Tear now works on the Pounce bleed.", "Nov 9: Natural Instinct applies to Lacerate and Pounce; Cat Feral Charge puts you in combat at once.", "Nov 6: Bloom heals the target correctly.", "Bear Form threat 50% → 115%; Swipe, Claw, Pounce and Shred heavily buffed.", "Berserk removed; Lacerate is now a Feral talent.", "New passive Composure (level 32) and new Feral and Restoration talents.", "Starfire +40% base damage, Regrowth 3 sec cast."],
     specs: [
       { name: "Balance", role: "Ranged DPS", split: [41, 0, 10],
         key: ["Moonkin Form", "Eclipse", "Insect Swarm", "Improved Starfire", "Improved Wrath", "Moonglow", "Genesis", "Improved Moonfire", "Nature's Splendor"],
